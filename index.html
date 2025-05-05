@@ -50,7 +50,7 @@
     email.addEventListener("input", ()=> validate(email));
    
         function validate(email){
-           if(email.validity.typeMismatch){
+           if(email.validity.typeMismatch || email.validity.valueMissing){
             email.setCustomValidity("Please enter a valid email address in the format:abc@example.com");
             email.reportValidity();}
             else{
