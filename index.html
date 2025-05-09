@@ -46,17 +46,25 @@
         </div>
 
  <script>
-    const  email=document.getElementById("email");
-    email.addEventListener("input", ()=> validate(email));
-   
-        function validate(email){
-           if(email.validity.typeMismatch || email.validity.valueMissing){
-            email.setCustomValidity("Please enter a valid email address in the format:abc@example.com");
-            email.reportValidity();}
-            else{
-                email.setCustomValidity("");
-            }
-        }
+    const email = document.getElementById("email");
+const form = document.getElementById("user-form");
+
+function validate(email){
+    if(email.validity.typeMismatch || email.validity.valueMissing){
+        email.setCustomValidity("Please enter a valid email address in the format: abc@example.com");
+    } else {
+        email.setCustomValidity("");
+    }
+}
+
+email.addEventListener("input", () => validate(email));
+
+form.addEventListener("submit", function(event) {
+    validate(email);
+    if (!form.checkValidity()) {
+        event.preventDefault();
+    }
+});
         const dobInput = document.getElementById("dob");
 dobInput.addEventListener("input", () => {
     const dob = new Date(dobInput.value);
