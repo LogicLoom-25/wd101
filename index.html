@@ -25,7 +25,7 @@
                 </div>
                 <div>
                     <label for="dob" class="block text-sm font-medium text-gray-700">Date of Birth</label>
-                    <input required type="date" id="dob" name="dob"  required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-500">
+                    <input required type="date" min="1970-01-01" max="2007-12-31" id="dob" name="dob"  required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-500">
                     
                 </div>
                 <div>
@@ -66,9 +66,10 @@ dobInput.addEventListener("input", () => {
     const minAge = new Date(Date.UTC(todayUTC.getFullYear() - 55, todayUTC.getMonth(), todayUTC.getDate()));
     const maxAge = new Date(Date.UTC(todayUTC.getFullYear() - 18, todayUTC.getMonth(), todayUTC.getDate()));
     const dobFormatted = dob.toISOString().split("T")[0];
-    const minDate = minAge.toISOString().split("T")[0];
-    const maxDate = maxAge.toISOString().split("T")[0];
-
+   // const minDate = minAge.toISOString().split("T")[0];
+    //const maxDate = maxAge.toISOString().split("T")[0];
+const minDate="1970-01-01";
+const maxDate="2007-12-31";
     //console.log(`DOB: ${dobFormatted}, Min Date: ${minDate}, Max Date: ${maxDate}`); 
     if (dobFormatted < minDate || dobFormatted > maxDate) {
         dobInput.setCustomValidity(`Date of birth must be between 18 and 55 years old (Valid range: ${minDate} to ${maxDate}).`);
