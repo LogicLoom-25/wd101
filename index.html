@@ -54,7 +54,7 @@ submit.addEventListener('click',()=>validate(email));
 function validate(element){
     if (element.validity.typeMismatch) {
         element.setCustomValidity("Invalid email format.");
-        element.reportValidity;
+        element.reportValidity();
     } else {
         email.setCustomValidity("");
     }
@@ -66,26 +66,7 @@ form.addEventListener("submit", function(event) {
         event.preventDefault();
     }
 });
-        const dobInput = document.getElementById("dob");
-dobInput.addEventListener("input", () => {
-    const dob = new Date(dobInput.value);
-    const today = new Date();
-    const todayUTC = new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate())); 
-
-    const minAge = new Date(Date.UTC(todayUTC.getFullYear() - 55, todayUTC.getMonth(), todayUTC.getDate()));
-    const maxAge = new Date(Date.UTC(todayUTC.getFullYear() - 18, todayUTC.getMonth(), todayUTC.getDate()));
-    const dobFormatted = dob.toISOString().split("T")[0];
-   // const minDate = minAge.toISOString().split("T")[0];
-    //const maxDate = maxAge.toISOString().split("T")[0];
-const minDate="1970-01-01";
-const maxDate="2007-12-31";
-    //console.log(`DOB: ${dobFormatted}, Min Date: ${minDate}, Max Date: ${maxDate}`); 
-    if (dobFormatted < minDate || dobFormatted > maxDate) {
-        dobInput.setCustomValidity(`Date of birth must be between 18 and 55 years old (Valid range: ${minDate} to ${maxDate}).`);
-    } else {
-        dobInput.setCustomValidity("");
-    }
-});
+   
  </script>
  <script src="index.js"></script>
 </body>
