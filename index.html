@@ -64,7 +64,23 @@ function validate(element){
         email.setCustomValidity("");
     }
 }
+dobInput.addEventListener("input", () => {
+            const dob = new Date(dobInput.value);
+            const today = new Date();
+            const todayUTC = new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()));
+            const minAge = new Date(Date.UTC(todayUTC.getFullYear() - 55, todayUTC.getMonth(), todayUTC.getDate()));
+            const maxAge = new Date(Date.UTC(todayUTC.getFullYear() - 18, todayUTC.getMonth(), todayUTC.getDate()));
+            const dobFormatted = dob.toISOString().split("T")[0];
+            const minDate = "1970-01-01";
+            const maxDate = "2007-12-31";
 
+            if (dobFormatted < minDate || dobFormatted > maxDate) {
+                dobInput.setCustomValidity(`Date of birth must be between 18 and 55 years old (Valid range: ${minDate} to ${maxDate}).`);
+                dobInput.reportValidity();
+            } else {
+                dobInput.setCustomValidity("");
+            }
+        });
 form.addEventListener("submit", function(event) {
     validate(email);
     if (!form.checkValidity()) {
