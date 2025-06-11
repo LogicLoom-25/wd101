@@ -1,6 +1,22 @@
+
+if (!localStorage.getItem("forminuse")) {
+    localStorage.removeItem("userEntries");
+    localStorage.setItem("forminuse", "true");
+}
+window.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") {
+        setTimeout(() => {
+           
+            if (document.visibilityState === "hidden") {
+                localStorage.removeItem("forminuse");
+            }
+        }, 1000);
+    }
+});
+
 let userform = document.getElementById("user-form");
 const retrieveUserEntries = () => {
-    let entries = sessionStorage.getItem("userEntries");
+    let entries = localStorage.getItem("userEntries");
     if (entries) {
         entries = JSON.parse(entries);
     } else {
@@ -49,7 +65,7 @@ const saveUserForm = (event) => {
         acceptTermsAndCondtions,
     };
     userEntries.push(entry);
-    sessionStorage.setItem("userEntries", JSON.stringify(userEntries));
+    localStorage.setItem("userEntries", JSON.stringify(userEntries));
     displayUserEntries();
 };
 
